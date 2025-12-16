@@ -1,0 +1,35 @@
+{
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.bundle/**": true,
+    "**/vendor/**": true,
+    "**/tmp/**": true,
+    "**/.git/**": true,
+    "**/log/**": true,
+    "**/storage/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/node_modules/**": true,
+    "**/vendor": true,
+    "**/vendor/**": true,
+    "**/.bundle": true,
+    "**/.bundle/**": true,
+    "**/tmp": true,
+    "**/tmp/**": true,
+    "**/log": true,
+    "**/log/**": true,
+    "**/.git": true,
+    "**/.git/**": true
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/vendor": true,
+    "**/.bundle": true,
+    "**/tmp": true,
+    "**/log": true,
+    "**/storage": true
+  },
+  "search.followSymlinks": false,
+  "editor.largeFileOptimizations": true
+}
