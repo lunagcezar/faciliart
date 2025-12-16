@@ -10,52 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_19_162532) do
+ActiveRecord::Schema[8.1].define(version: 2023_09_19_162532) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "arts", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.jsonb "data"
+    t.string "name"
+    t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_arts_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
+    t.bigint "art_id", null: false
     t.text "content"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "art_id", null: false
+    t.bigint "user_id", null: false
     t.index ["art_id"], name: "index_comments_on_art_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "item_sizes", force: :cascade do |t|
-    t.bigint "item_id", null: false
-    t.string "size"
-    t.decimal "price"
     t.datetime "created_at", null: false
+    t.bigint "item_id", null: false
+    t.decimal "price"
+    t.string "size"
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_item_sizes_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
+    t.string "name"
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
     t.bigint "art_id", null: false
-    t.bigint "user_id", null: false
+    t.decimal "artist_rate"
+    t.datetime "created_at", null: false
     t.bigint "item_id", null: false
     t.bigint "item_size_id", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "artist_rate"
+    t.bigint "user_id", null: false
     t.index ["art_id"], name: "index_orders_on_art_id"
     t.index ["item_id"], name: "index_orders_on_item_id"
     t.index ["item_size_id"], name: "index_orders_on_item_size_id"
@@ -69,15 +69,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_162532) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "email"
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.boolean "is_admin", default: false
+    t.string "name"
+    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
