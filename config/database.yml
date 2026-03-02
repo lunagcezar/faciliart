@@ -7,13 +7,14 @@ default: &default
 development:
   <<: *default
   database: tcc_development
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
 
 test:
   <<: *default
   database: tcc_test
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
 
 production:
   <<: *default
   database: tcc_production
-  username: tcc
-  password: <%= ENV["TCC_DATABASE_PASSWORD"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
